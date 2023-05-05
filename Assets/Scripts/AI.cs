@@ -5,6 +5,10 @@ using UnityEngine.AI;
 
 public class AI : MonoBehaviour
 {
+
+    private Animator animator;
+    private string currentState;
+
     public NavMeshAgent agent;
 
     public Transform player;
@@ -26,6 +30,13 @@ public class AI : MonoBehaviour
     public float sightRange, AttackRange;
     public bool PlayerInSightRange, playerInAttackRange;
 
+    //Animation Enemy States
+    const string ENEMY_WALK = "Enemy_Walk";
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        
+    }
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
@@ -37,9 +48,21 @@ public class AI : MonoBehaviour
         PlayerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, AttackRange, WhatIsPlayer);
 
-        if (!PlayerInSightRange && !playerInAttackRange) Patroling();
-        if (PlayerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (PlayerInSightRange && playerInAttackRange) AttackPlayer();
+        if (!PlayerInSightRange && !playerInAttackRange)
+        {
+            Patroling();
+            ChangeAnimationState(ENEMY_WALK);
+        }
+        if (PlayerInSightRange && !playerInAttackRange)
+        {
+            ChasePlayer();
+            ChangeAnimationState(ENEMY_WALK);
+        }
+        if (PlayerInSightRange && playerInAttackRange)
+        {
+            AttackPlayer();
+            ChangeAnimationState(ENEMY_WALK);
+        }
     }
 
     private void Patroling()
@@ -99,5 +122,10 @@ public class AI : MonoBehaviour
     public void DestroyEnemy()
     {
         Destroy(gameObject);
+    }
+
+    void ChangeAnimationState(string newState)
+    {
+        animator.Play(newState);
     }
 }
