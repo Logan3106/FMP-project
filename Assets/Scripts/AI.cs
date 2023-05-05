@@ -16,6 +16,7 @@ public class AI : MonoBehaviour
     public LayerMask whatIsGround, WhatIsPlayer;
 
     public float health;
+    public GameObject Weapon;
 
     //Patrolling
     public Vector3 walkPoint;
@@ -25,6 +26,7 @@ public class AI : MonoBehaviour
     //Attacking
     public float cooldownattack;
     bool alreadyattacked;
+    public int damage;
 
     //states
     public float sightRange, AttackRange;
@@ -102,8 +104,26 @@ public class AI : MonoBehaviour
 
         if (!alreadyattacked)
         {
+            StartCoroutine(AttackingPlayer());
             alreadyattacked = true;
             Invoke(nameof(ResetAttack), cooldownattack);
+
+            IEnumerator AttackingPlayer()
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(Weapon.transform.position, Weapon.transform.forward, out hit, sightRange))
+                {
+                    Debug.Log(hit.transform);
+
+                    PlayerMovement playerscript = hit.transform.GetComponent<PlayerMovement>();
+                    if (playerscript != null)
+                    {
+                        playerscript.TakeDamage(damage);
+                    }
+                }
+    
+                yield return null;
+            }
         }
     }
 

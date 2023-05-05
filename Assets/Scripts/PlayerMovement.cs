@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     Vector3 speed;
     bool isgrounded;
 
+    public float health;
+
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -25,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        TakeDamage(10);
         PlayerMove();
     }
 
@@ -55,5 +58,17 @@ public class PlayerMovement : MonoBehaviour
         speed.y += gravity * Time.deltaTime;
 
         characterController.Move(speed * Time.deltaTime); 
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0) Invoke(nameof(DestroyPlayer), .5f);
+    }
+
+    public void DestroyPlayer()
+    {
+        Destroy(gameObject);
     }
 }
