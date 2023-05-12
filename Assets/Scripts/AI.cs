@@ -104,7 +104,6 @@ public class AI : MonoBehaviour
 
         if (!alreadyattacked)
         {
-            StartCoroutine(AttackingPlayer());
             alreadyattacked = true;
             Invoke(nameof(ResetAttack), cooldownattack);
 
@@ -121,8 +120,8 @@ public class AI : MonoBehaviour
                         playerscript.TakeDamage(damage);
                     }
                 }
-    
-                yield return null;
+
+                yield return new WaitForSeconds(1f);
             }
         }
     }
