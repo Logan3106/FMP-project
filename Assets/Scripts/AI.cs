@@ -9,9 +9,12 @@ public class AI : MonoBehaviour
     private Animator animator;
     private string currentState;
 
+    private PlayerMovement playerhealth;
+
     public NavMeshAgent agent;
 
     public Transform player;
+    public GameObject playerObj;
 
     public LayerMask whatIsGround, WhatIsPlayer;
 
@@ -34,9 +37,11 @@ public class AI : MonoBehaviour
 
     //Animation Enemy States
     const string ENEMY_WALK = "Enemy_Walk";
+    const string ENEMY_ATTACK = "Attacking_Enemy";
     private void Start()
     {
         animator = GetComponent<Animator>();
+        playerhealth = playerObj.GetComponent<PlayerMovement>();
         
     }
     private void Awake()
@@ -58,12 +63,12 @@ public class AI : MonoBehaviour
         if (PlayerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
-            ChangeAnimationState(ENEMY_WALK);
+            ChangeAnimationState(ENEMY_ATTACK);
         }
         if (PlayerInSightRange && playerInAttackRange)
         {
             AttackPlayer();
-            ChangeAnimationState(ENEMY_WALK);
+            ChangeAnimationState(ENEMY_ATTACK);
         }
     }
 
@@ -104,25 +109,12 @@ public class AI : MonoBehaviour
 
         if (!alreadyattacked)
         {
+
+            TakeHealthPlayer();
+            print("Attack");
+
             alreadyattacked = true;
             Invoke(nameof(ResetAttack), cooldownattack);
-
-            IEnumerator AttackingPlayer()
-            {
-                RaycastHit hit;
-                if (Physics.Raycast(Weapon.transform.position, Weapon.transform.forward, out hit, sightRange))
-                {
-                    Debug.Log(hit.transform);
-
-                    PlayerMovement playerscript = hit.transform.GetComponent<PlayerMovement>();
-                    if (playerscript != null)
-                    {
-                        playerscript.TakeDamage(damage);
-                    }
-                }
-
-                yield return new WaitForSeconds(1f);
-            }
         }
     }
 
@@ -146,5 +138,10 @@ public class AI : MonoBehaviour
     void ChangeAnimationState(string newState)
     {
         animator.Play(newState);
+    }
+    
+    void TakeHealthPlayer()
+    {
+        playerhealth.TakeDamage(damage);
     }
 }
