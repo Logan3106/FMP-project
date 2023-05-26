@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         PlayerMove();
+        sceneRestart();
     }
 
 
@@ -48,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
         characterController.Move(move * speedMove * Time.deltaTime);
 
-        if(Input.GetButtonDown("Jump") && isgrounded)
+        if (Input.GetButtonDown("Jump") && isgrounded)
         {
             speed.y = Mathf.Sqrt(Jump * -2f * gravity);
         }
@@ -56,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
         speed.y += gravity * Time.deltaTime;
 
-        characterController.Move(speed * Time.deltaTime); 
+        characterController.Move(speed * Time.deltaTime);
     }
 
     public void TakeDamage(int damage)
@@ -70,4 +72,23 @@ public class PlayerMovement : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "Health")
+        {
+            health = health + 30;
+            Destroy(col.gameObject);
+        }
+    }
+
+    void sceneRestart()
+    {
+        if (health <= 0)
+        {
+            SceneManager.LoadScene("DeadScne");
+        }
+    }
 }
+
+

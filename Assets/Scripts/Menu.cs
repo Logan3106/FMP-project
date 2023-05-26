@@ -21,6 +21,21 @@ public class Menu : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Quit");
-        
+
+    }
+
+    public void RestartButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+    }
+
+    public void Yes()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void No()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }

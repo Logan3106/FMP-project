@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,6 @@ public class PlayerAttack : MonoBehaviour
 {
     private Animator animator;
 
-    private bool isAttacking;
     private bool isAttackingPressed;
 
     public Camera WeaponAttack;
@@ -15,6 +15,7 @@ public class PlayerAttack : MonoBehaviour
     public int Damage = 10;
     public float CoolDownAttack = 0.3f;
     public float range = 3f;
+    public Collider PitchForkCol;
 
     //Animations States
     const string PLAYER_ATTACK = "Player_Attack";
@@ -30,7 +31,6 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         PlayerAttacking();
-  
     }
 
     void ChangeAnimationState(string newState)
@@ -43,7 +43,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !isAttackingPressed)
         {
             StartCoroutine(swing());
-            StartCoroutine(attacking());
+            
         }
     }
 
@@ -58,23 +58,11 @@ public class PlayerAttack : MonoBehaviour
         isAttackingPressed = false;
     }
 
-        IEnumerator attacking()
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
         {
-            RaycastHit hit;
-            if (Physics.Raycast(WeaponAttack.transform.position, WeaponAttack.transform.forward, out hit, range))
-            {
-               Debug.Log(hit.transform);
-               
-               AI Aiscript = hit.transform.GetComponent<AI>();
-               if (Aiscript != null)
-               {
-                Aiscript.TakeDamage(Damage);
-               }
-               
-
-            }
-
-            yield return new WaitForSeconds(1f);
+            collision.transform.gameObject.GetComponent<AI>().TakeDamage(Damage);
         }
-    
+    }
 }

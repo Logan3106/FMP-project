@@ -10,11 +10,13 @@ public class AI : MonoBehaviour
     private string currentState;
 
     private PlayerMovement playerhealth;
+    private NextLevel nl;
 
     public NavMeshAgent agent;
 
     public Transform player;
     public GameObject playerObj;
+    public GameObject enemies;
 
     public LayerMask whatIsGround, WhatIsPlayer;
 
@@ -42,11 +44,11 @@ public class AI : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         playerhealth = playerObj.GetComponent<PlayerMovement>();
+        nl = enemies.GetComponent<NextLevel>();
         
     }
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -111,7 +113,6 @@ public class AI : MonoBehaviour
         {
 
             TakeHealthPlayer();
-            print("Attack");
 
             alreadyattacked = true;
             Invoke(nameof(ResetAttack), cooldownattack);
@@ -127,7 +128,12 @@ public class AI : MonoBehaviour
     {
         health -= damage;
 
-        if (health <= 0) Invoke(nameof(DestroyEnemy), .5f);
+        if (health <= 0)
+        {
+            nl.AddKill();
+
+            Invoke(nameof(DestroyEnemy), .5f);
+        }
     }
 
     public void DestroyEnemy()
