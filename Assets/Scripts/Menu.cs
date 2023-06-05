@@ -27,15 +27,18 @@ public class Menu : MonoBehaviour
     public void RestartButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void Yes()
     {
         SceneManager.LoadScene("Game");
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void No()
     {
         SceneManager.LoadScene("Menu");
+        Cursor.lockState = CursorLockMode.None;
     }
 }

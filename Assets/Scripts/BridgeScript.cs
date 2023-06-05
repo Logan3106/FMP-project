@@ -10,6 +10,7 @@ public class BridgeScript : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 

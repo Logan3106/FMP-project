@@ -87,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         if (health <= 0)
         {
             SceneManager.LoadScene("DeadScne");
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
