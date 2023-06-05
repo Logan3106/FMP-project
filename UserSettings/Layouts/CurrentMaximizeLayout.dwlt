@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 9188
+  controlID: 12603
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 9142
+  controlID: 12557
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 9109
+  controlID: 12548
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -237,7 +237,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 6425f8ffd8b8f9ff16caf9ffd86bfaff5c6dfaffce02fcff9460fcffd261fcff1a96fcffea98fcffa439feffc640feffb641feff904efefffce6ffff2afbffffc6690000626b00007e7f0000dc7f01002a800100b0810100dc81010008eb070088eb0700a0f4070086f50700a2f50700fef50700
+      m_ExpandedIDs: 6425f8ffd8b8f9ff16caf9ffd86bfaff5c6dfaffce02fcff9460fcffd261fcff1a96fcffea98fcffa439feffc640feffb641feff904efefffce6ffff2afbffffc6690000626b00007e7f0000dc7f01002a800100b0810100dc81010008eb070088eb0700a0f4070086f50700a2f50700fef50700981b0800
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -364,11 +364,11 @@ MonoBehaviour:
       index: 1
       layout: 1
     - dockPosition: 0
-      containerId: overlay-container--left
-      floating: 1
+      containerId: overlay-toolbar__left
+      floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 3, y: 39}
+      snapOffset: {x: 47, y: 49}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-transform-toolbar
@@ -811,21 +811,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/music
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/music
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\temp\Logan\FMP project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 193}
-    m_SelectedIDs: 58780000
-    m_LastClickedID: 30808
+    m_SelectedIDs: 4cf30700
+    m_LastClickedID: 521036
     m_ExpandedIDs: 00000000487400004a7400004c7400004e74000050740000527400005474000056740000587400005a7400005c7400005e74000060740000627400006474000066740000687400006a7400006c7400006e74000070740000727400007474000076740000787400007a7400007c7400007e74000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -879,8 +879,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: e0780000
-    m_LastClickedInstanceID: 30944
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000c0c30000e66c000000000000446b0100e86a0100
     m_RenameOverlay:
@@ -1034,7 +1034,7 @@ MonoBehaviour:
     m_CachedPref: -153
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 30944
+  m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
