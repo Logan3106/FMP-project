@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,7 +44,7 @@ public class MenuHanddle : MonoBehaviour
         }
     }
 
-    public void ChangeVolumeMusic(float Volume)
+    public void ChangeVolumeMusic()
     {
         musicSource.volume = volumeSlider.value;
         Save();
@@ -81,7 +82,7 @@ public class MenuHanddle : MonoBehaviour
         {
             logic = 1;
             volumeSlider.interactable = true;
-            ChangeVolumeMusic(PlayerPrefs.GetFloat("SaveSFX"));
+            ChangeVolumeSFX(PlayerPrefs.GetFloat("SaveSFX"));
         }
         else if (musicToggle.isOn == false)
         {
@@ -91,5 +92,10 @@ public class MenuHanddle : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("musicToggleSaveKey", logic);
+    }
+
+    private void ChangeVolumeSFX(float v)
+    {
+        throw new NotImplementedException();
     }
 }
